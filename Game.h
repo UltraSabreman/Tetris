@@ -4,6 +4,7 @@
 #include "Includes.h"
 #include "Cell.h"
 #include "Tetramino.h"
+#include "TetraTypes.h"
 
 class Game
 {
@@ -13,11 +14,11 @@ class Game
 		
 		void draw();
 
-		vector<ALLEGRO_BITMAP*> _tiles;
 		ALLEGRO_DISPLAY *_display;
 
 		vector<vector<Cell*>> _grid;
 		vector<Tetramino*> _tets;
+		vector<TetraTypes*> _types;
 };
 
 #endif

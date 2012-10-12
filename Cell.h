@@ -8,14 +8,14 @@ class Game;
 class Cell
 {
 	public:
-		Cell(Tetramino *tet, TileColors col, int posX, int posY);
+		Cell(Tetramino *tet, ALLEGRO_BITMAP *tile, int posX, int posY);
 		~Cell();
 
 		void draw();
 
 		bool _isAlive;
 
-		TileColors _color;
+		ALLEGRO_BITMAP *_tile;
 		Tetramino *_tetramino;
 		int _posX;
 		int _posY;

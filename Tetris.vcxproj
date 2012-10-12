@@ -75,6 +75,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="Tetramino.h" />
+    <ClInclude Include="TetraTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\BlueTile.png" />

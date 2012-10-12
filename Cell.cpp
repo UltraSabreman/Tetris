@@ -2,9 +2,9 @@
 #include "Tetramino.h"
 #include "Game.h"
 
-Cell::Cell(Tetramino *tet, TileColors col, int posX, int posY)
+Cell::Cell(Tetramino *tet, ALLEGRO_BITMAP *tile, int posX, int posY)
 {
-	_color = col;
+	_tile = tile;
 	_tetramino = tet;
 	_isAlive = true;
 
@@ -20,6 +20,6 @@ void Cell::draw()
 {
 	if(_isAlive)
 	{
-		al_draw_bitmap(_tetramino->_game->_tiles[_color], _posX, _posY, NULL);
+		al_draw_bitmap(_tile, _posX, _posY, NULL);
 	}
 }
