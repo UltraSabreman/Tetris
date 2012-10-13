@@ -13,8 +13,6 @@ class Cell
 
 		void draw();
 
-		bool _isAlive;
-
 		ALLEGRO_BITMAP *_tile;
 		Tetramino *_tetramino;
 		int _posX;

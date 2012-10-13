@@ -5,6 +5,7 @@
 #include "Cell.h"
 #include "Tetramino.h"
 #include "TetraTypes.h"
+#include "UI.h"
 
 class Game
 {
@@ -13,12 +14,16 @@ class Game
 		~Game();
 		
 		void draw();
+		void rot();
+		void updateGrid();
 
 		ALLEGRO_DISPLAY *_display;
 
 		vector<vector<Cell*>> _grid;
 		vector<Tetramino*> _tets;
 		vector<TetraTypes*> _types;
+
+		UI *_ui;
 };
 
 #endif

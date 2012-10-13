@@ -1,9 +1,7 @@
 #include "Includes.h"
 #include "Game.h"
 
-//TODO: Make a dedicatd grid space and grid first thing! 
-// That way you know exactly where all the menu elemets will go
-// and how the game will look.
+//TODO: Collition detection
 
 void DrawingHandler(ALLEGRO_DISPLAY *display, ALLEGRO_EVENT *event, Game *game)
 {
@@ -14,9 +12,9 @@ void DrawingHandler(ALLEGRO_DISPLAY *display, ALLEGRO_EVENT *event, Game *game)
 	game->draw();
 }
 
-void LogicHandler(ALLEGRO_EVENT *event)
+void LogicHandler(ALLEGRO_EVENT *event, Game *game)
 {
-
+	game->rot();
 }
 
 void MainRunLoop(ALLEGRO_DISPLAY *display)
@@ -52,7 +50,7 @@ void MainRunLoop(ALLEGRO_DISPLAY *display)
 			}
 			else if(event.timer.source == logicTimer)
 			{
-				LogicHandler(&event);
+				LogicHandler(&event, game);
 			}
 		}
 

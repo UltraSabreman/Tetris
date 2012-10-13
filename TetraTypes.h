@@ -5,9 +5,9 @@
 
 struct TetraTypes
 {
-	string type;
+	//string type;
 	ALLEGRO_BITMAP *tile;
-	string pattern;
+	vector<string> patterns;
 };
 
 #endif

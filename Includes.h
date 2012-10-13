@@ -14,11 +14,16 @@ using namespace std;
 #include <allegro5\allegro_image.h>
 
 //Enums
-enum TileColors {RED, YELLOW, ORANGE, GREEN, CYAN, BLUE, PURPLE};
+//enum TileColors {RED, YELLOW, ORANGE, GREEN, CYAN, BLUE, PURPLE};
+enum TetraminoTypes {Z, L, O, J, I, S, T};
+enum Direction {LEFT, UP, RIGHT, DOWN};
 
 //Global Const Vars
 const float FPS = 60;
 const int PNG_OFFSET = 18;
+const int GRID_WIDTH = 10;
+const int GRID_HEIGHT = 18;
+
 
 const float pi = 3.1415926535897932384626433832795;
 

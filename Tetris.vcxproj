@@ -69,6 +69,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Tetramino.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
@@ -76,6 +77,8 @@
     <ClInclude Include="Includes.h" />
     <ClInclude Include="Tetramino.h" />
     <ClInclude Include="TetraTypes.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="Utiltities.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\BlueTile.png" />
