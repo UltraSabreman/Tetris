@@ -10,14 +10,10 @@ Cell::Cell(Tetramino *tet, ALLEGRO_BITMAP *tile, int posX, int posY)
 	_posX = posX;
 	_posY = posY;
 
-	_tetramino->_game->_grid[_posX][_posY] = this;
+	_tetramino->_game->_grid[_posX + _tetramino->_offsetX][_posY + _tetramino->_offsetY] = this;
+	_visited = false;
 }
 Cell::~Cell()
 {
 	return;
-}
-
-void Cell::draw()
-{
-	al_draw_bitmap(_tile, (_posX + _tetramino->_offsetX) * PNG_OFFSET, (_posY + _tetramino->_offsetY) * PNG_OFFSET, NULL);
 }

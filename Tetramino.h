@@ -3,6 +3,7 @@
 #include "Includes.h"
 #include "TetraTypes.h"
 
+
 class Game;
 class Cell;
 
@@ -10,11 +11,11 @@ class Tetramino
 {
 	public:
 		Tetramino(Game *game, TetraTypes *type, int offX, int offY, int rotation = 0);
+		Tetramino(Game *game, vector<Cell*> *newCells, int offx, int offY);
 		~Tetramino();
 
-		void draw();
 		void makeCells();
-		void updateCells();
+		void updateCellRotation();
 		bool tryTurn(Direction dir);
 		bool isColliding();
 		bool tryMove(Direction dir);
@@ -25,6 +26,9 @@ class Tetramino
 		int _rotation, _realrot;
 		int _offsetX;
 		int _offsetY;
+
+		bool getAdjacentCells(Tetramino *tet, Cell *cell, vector<Cell*> *testing);
+		Cell* getFirstCell();
 };
 
 #endif

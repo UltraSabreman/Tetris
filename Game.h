@@ -6,24 +6,32 @@
 #include "Tetramino.h"
 #include "TetraTypes.h"
 #include "UI.h"
+#include "Input.h"
 
 class Game
 {
 	public:
 		Game(ALLEGRO_DISPLAY *disp);
 		~Game();
-		
-		void draw();
-		void rot();
+
+		void mainRun();
+		void doTickLogic();
+		void doGravity(Tetramino *Tet);
+		void resetTetVisits(Tetramino *Tet);
 		void updateGrid();
 
-		ALLEGRO_DISPLAY *_display;
+		Tetramino *_currentTet;
+		int _speedMod;
+		int _oldMod;
+		int _tick;
+		bool _lineDeleted;
 
 		vector<vector<Cell*>> _grid;
 		vector<Tetramino*> _tets;
 		vector<TetraTypes*> _types;
 
 		UI *_ui;
+		Input *_iHandler;
 };
 
 #endif

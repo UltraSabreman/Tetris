@@ -1,20 +1,12 @@
 #include "Includes.h"
 #include "Game.h"
 
-//TODO: Collition detection
 
-void DrawingHandler(ALLEGRO_DISPLAY *display, ALLEGRO_EVENT *event, Game *game)
-{
-	int ScrH = al_get_display_height(display);
-	int ScrW = al_get_display_width(display);
-
-	al_clear_to_color(al_map_rgb(0,0,0));
-	game->draw();
-}
+//TODO: Cleanup code and I think 90% of problems will goaway.
 
 void LogicHandler(ALLEGRO_EVENT *event, Game *game)
 {
-	game->rot();
+	game->mainRun();
 }
 
 void MainRunLoop(ALLEGRO_DISPLAY *display)
@@ -23,25 +15,32 @@ void MainRunLoop(ALLEGRO_DISPLAY *display)
 
 	ALLEGRO_EVENT_QUEUE *mainEventQueue = al_create_event_queue();
 	ALLEGRO_TIMER *drawTimer = al_create_timer(1.0 / FPS);
-	ALLEGRO_TIMER *logicTimer = al_create_timer(0.5); //need to make this dynamic later on.
+	ALLEGRO_TIMER *tickTimer = al_create_timer(0.1); //need to make this dynamic later on.
+	ALLEGRO_TIMER *logicTimer = al_create_timer(1.0 / FPS); //need to make this dynamic later on.
 	
 	al_register_event_source(mainEventQueue, al_get_display_event_source(display));
 	al_register_event_source(mainEventQueue, al_get_keyboard_event_source());
 	al_register_event_source(mainEventQueue, al_get_mouse_event_source());
 	al_register_event_source(mainEventQueue, al_get_timer_event_source(drawTimer));
 	al_register_event_source(mainEventQueue, al_get_timer_event_source(logicTimer));
+	al_register_event_source(mainEventQueue, al_get_timer_event_source(tickTimer));
 
 	bool Run = true;
 	bool draw = true;
+	int tick = 0;
 
 	al_start_timer(drawTimer);
 	al_start_timer(logicTimer);
+	al_start_timer(tickTimer);
 
+	//bool stepUp = 0;
 	while(Run)
 	{
 		ALLEGRO_EVENT event;
 		al_wait_for_event(mainEventQueue, &event);
-		
+
+		game->_iHandler->mainHandler(mainEventQueue, event);
+
 		if (event.type == ALLEGRO_EVENT_TIMER)
 		{
 			if(event.timer.source == drawTimer) 
@@ -51,17 +50,19 @@ void MainRunLoop(ALLEGRO_DISPLAY *display)
 			else if(event.timer.source == logicTimer)
 			{
 				LogicHandler(&event, game);
+			}else if(event.timer.source == tickTimer)
+			{
+				game->_tick++;
+				if (game->_tick % game->_speedMod == 0)
+				{
+					game->doTickLogic();
+				}
 			}
 		}
 
-		/*if (event.type == ALLEGRO_EVENT_KEY_DOWN)
-		{
-			curPress = event.keyboard.keycode;
-		}*/
-
 		if (draw == true && al_event_queue_is_empty(mainEventQueue)) 
 		{
-			DrawingHandler(display, &event, game);
+			game->_ui->mainDraw();
 			al_flip_display();
 			draw = false;
 		}

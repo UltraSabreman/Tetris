@@ -11,12 +11,12 @@ class Cell
 		Cell(Tetramino *tet, ALLEGRO_BITMAP *tile, int posX, int posY);
 		~Cell();
 
-		void draw();
-
 		ALLEGRO_BITMAP *_tile;
 		Tetramino *_tetramino;
 		int _posX;
 		int _posY;
+
+		bool _visited;
 	private:
 
 };
